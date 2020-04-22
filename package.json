@@ -1,0 +1,25 @@
+{
+  "name": "ebsubotbl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "engines": {
+    "node" :  "12.16.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abilyalov/ebsubotbl.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abilyalov/ebsubotbl/issues"
+  },
+  "homepage": "https://github.com/abilyalov/ebsubotbl#readme",
+  "dependencies": {
+    "node-telegram-bot-api": "^0.40.0"
+  }
+}

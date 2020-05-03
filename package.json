@@ -1,25 +1,15 @@
 {
-  "name": "ebsubotbl",
+  "name": "bot02",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js"
-  },
-  "engines": {
-    "node" :  "12.16.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/abilyalov/ebsubotbl.git"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/abilyalov/ebsubotbl/issues"
-  },
-  "homepage": "https://github.com/abilyalov/ebsubotbl#readme",
   "dependencies": {
+    "node-github-webhook": "^1.0.7",
     "node-telegram-bot-api": "^0.40.0"
   }
 }

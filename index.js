@@ -1,41 +1,28 @@
 var TelegramBot = require('node-telegram-bot-api');
-var TOKEN = '559766897:AAG3V9JLotMx0_eAW4G_baT0_h5l9sJaqqI';
+var TOKEN = '1294511706:AAGrODagk3YleJkwKrI29KT9gMB0yhORlcc';
 var bot = new TelegramBot(TOKEN, {polling: true});
 
-var http = require('http')
-var createHandler = require('node-github-webhook')
-var handler = createHandler([ // multiple handlers
-  { path: '/webhook1', secret: 'secret1' },
-  { path: '/webhook2', secret: 'secret2' }
-])
-// var handler = createHandler({ path: '/webhook1', secret: 'secret1' }) // single handler
+const express = require("express")
+const cors = require("cors")
 
-http.createServer(function (req, res) {
-  handler(req, res, function (err) {
-    res.statusCode = 404
-    res.end('no such location')
-  })
-}).listen(7777)
+/* Dependencies */
+const app = express()
+app.use(express.json())
+app.use(cors())
 
-handler.on('error', function (err) {
-  console.error('Error:', err.message)
+app.post("/webhooks", async (req, res) => {
+    if (req.body.action == "created") {
+        bot.sendMessage(msg.chat.id, `Got a like from ${req.body.sender.login}!`)
+    } else {
+      bot.sendMessage(msg.chat.id, `Like deleted from: ${req.body.sender.login}!`)
+    }
+
+    /* Remember to tell the API that we hear them. */
+    res.status(200).send("Received!")
 })
 
-handler.on('push', function (event) {
-  console.log(
-    'Received a push event for %s to %s',
-    event.payload.repository.name,
-    event.payload.ref
-  )
-  switch(event.path) {
-    case '/webhook1':
-      // do sth about webhook1
-      break
-    case '/webhook2':
-      // do sth about webhook2
-      break
-    default:
-      // do sth else or nothing
-      break
-  }
-})
+/* Start server */
+const port = process.env.PORT
+app.listen(port)
+
+console.log(`Running on ${port}`)
